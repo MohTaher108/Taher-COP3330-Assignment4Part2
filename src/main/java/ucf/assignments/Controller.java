@@ -1,11 +1,12 @@
 package ucf.assignments;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 public class Controller {
     // My main tableview that will contain everything
@@ -14,7 +15,6 @@ public class Controller {
     @FXML private TableColumn<Item, TextArea> DescriptionColumn;
     @FXML private TableColumn<Item, LocalDate> DueDateColumn;
     @FXML private TableColumn<Item, CheckBox> MarkCompleteColumn;
-    @FXML private TableColumn<Item, CheckBox> ContextMenuColumn;
 
     // Extra tableview that will show when the user needs it
     @FXML private TableView<Item> tableViewExtra;
@@ -22,10 +22,9 @@ public class Controller {
     @FXML private TableColumn<Item, TextArea> DescriptionColumnExtra;
     @FXML private TableColumn<Item, LocalDate> DueDateColumnExtra;
     @FXML private TableColumn<Item, CheckBox> MarkCompleteColumnExtra;
-    @FXML private TableColumn<Item, CheckBox> ContextMenuColumnExtra;
 
     // ArrayList that will hold all my items
-    ArrayList<Item> ItemList = new ArrayList<>();
+    ObservableList<Item> ItemList = FXCollections.observableArrayList();
 
     // Initialize all my columns
     @FXML
@@ -35,14 +34,14 @@ public class Controller {
         DescriptionColumn.setCellValueFactory(new PropertyValueFactory<>("Description"));
         DueDateColumn.setCellValueFactory(new PropertyValueFactory<>("DueDate"));
         MarkCompleteColumn.setCellValueFactory(new PropertyValueFactory<>("MarkComplete"));
-        ContextMenuColumn.setCellValueFactory(new PropertyValueFactory<>(""));
 
         // Set up the extra columns in the extra table
         NameColumnExtra.setCellValueFactory(new PropertyValueFactory<>("Name"));
         DescriptionColumnExtra.setCellValueFactory(new PropertyValueFactory<>("Description"));
         DueDateColumnExtra.setCellValueFactory(new PropertyValueFactory<>("DueDate"));
         MarkCompleteColumnExtra.setCellValueFactory(new PropertyValueFactory<>("MarkComplete"));
-        ContextMenuColumnExtra.setCellValueFactory(new PropertyValueFactory<>(""));
+
+        tableView.setItems(ItemList);
     }
 
     // This method will add an item when the MenuItem is clicked
@@ -50,10 +49,10 @@ public class Controller {
     protected void AddItem() {
         /*  ItemList.add(item)
             tableView.add(item) */
+
         // Add the new item to our arrayList
         ItemList.add(new Item("Item", LocalDate.now()));
         // Add the new item into the TableView
-        tableView.getItems().add(ItemList.get(ItemList.size()-1));
     }
 
     // This method will clear my TableView (Todo List)
@@ -64,27 +63,27 @@ public class Controller {
 
     @FXML
     protected void DisplayAllItemsInList() {
-        tableViewExtra.getItems().clear();
-        for(Item item: ItemList)
-            tableViewExtra.getItems().add(item);
+        tableView.setItems(ItemList);
     }
 
     @FXML
     protected void DisplayCompleteItemsInList() {
-        tableViewExtra.getItems().clear();
+        ObservableList<Item> tempList = FXCollections.observableArrayList();
         for(Item item: ItemList) {
-            if(!item.getMarkComplete().isSelected())
-                tableViewExtra.getItems().add(item);
+            if(item.getMarkComplete().isSelected())
+                tempList.add(item);
         }
+        tableView.setItems(tempList);
     }
 
     @FXML
     protected void DisplayIncompleteItemsInList() {
-        tableViewExtra.getItems().clear();
+        ObservableList<Item> tempList = FXCollections.observableArrayList();
         for(Item item: ItemList) {
             if(!item.getMarkComplete().isSelected())
-                tableViewExtra.getItems().add(item);
+                tempList.add(item);
         }
+        tableView.setItems(tempList);
     }
 
     @FXML

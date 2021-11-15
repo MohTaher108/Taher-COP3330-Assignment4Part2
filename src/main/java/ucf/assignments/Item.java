@@ -11,7 +11,6 @@ public class Item {
     private TextArea Description;
     private LocalDate DueDate;
     private CheckBox MarkComplete;
-    ItemContextMenu itemMenu;
 
     // Construct item's stuff
     public Item(String Name, LocalDate DueDate) {
@@ -20,7 +19,6 @@ public class Item {
         this.Description.setWrapText(true);
         this.DueDate = DueDate;
         this.MarkComplete = new CheckBox();
-        this.itemMenu = new ItemContextMenu();
     }
 
     // All my getters and setters
@@ -57,6 +55,7 @@ public class Item {
     }
 }
 
+/*
 // Class for the context menu of every item
 class ItemContextMenu extends ContextMenu {
     // Make context menu, and menu items for removing items and marking items complete
@@ -69,3 +68,4 @@ class ItemContextMenu extends ContextMenu {
         menu.getItems().addAll(removeItem, markComplete);
     }
 }
+*/
