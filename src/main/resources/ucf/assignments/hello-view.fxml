@@ -8,18 +8,28 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.Controller">
    <children>
+      <TableView fx:id="tableViewExtra" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columns>
+          <TableColumn fx:id="NameColumnExtra" prefWidth="75.0" text="Name" />
+            <TableColumn fx:id="DescriptionColumnExtra" minWidth="0.0" prefWidth="297.0" text="Description" />
+            <TableColumn fx:id="DueDateColumnExtra" minWidth="0.0" prefWidth="78.0" text="DueDate" />
+            <TableColumn fx:id="MarkCompleteColumnExtra" minWidth="5.0" prefWidth="107.0" text="MarkComplete" />
+            <TableColumn fx:id="ContextMenuColumnExtra" prefWidth="75.0" />
+        </columns>
+      </TableView>
       <TableView fx:id="tableView" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columns>
           <TableColumn fx:id="NameColumn" prefWidth="117.0" text="Name" />
           <TableColumn fx:id="DescriptionColumn" minWidth="0.0" prefWidth="297.0" text="Description" />
             <TableColumn fx:id="DueDateColumn" minWidth="0.0" prefWidth="78.0" text="DueDate" />
             <TableColumn fx:id="MarkCompleteColumn" minWidth="5.0" prefWidth="107.0" text="MarkComplete" />
+            <TableColumn fx:id="ContextMenuColumn" prefWidth="75.0" />
         </columns>
          <contextMenu>
-            <ContextMenu>
+            <ContextMenu maxHeight="200.0" minHeight="200.0" prefHeight="200.0">
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#AddItem" text="Add Item" />
-                  <MenuItem mnemonicParsing="false" onAction="#editListTitle" text="Edit title" />
+                  <MenuItem mnemonicParsing="false" onAction="#ClearList" text="Clear List" />
                   <MenuItem mnemonicParsing="false" onAction="#DisplayAllItemsInList" text="Display all Items" />
                   <MenuItem mnemonicParsing="false" onAction="#DisplayCompleteItemsInList" text="Display all complete items" />
                   <MenuItem mnemonicParsing="false" onAction="#DisplayIncompleteItemsInList" text="Display all incomplete items" />
