@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.Controller">
+   <children>
+      <TableView fx:id="tableView" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columns>
+          <TableColumn fx:id="NameColumn" prefWidth="117.0" text="Name" />
+          <TableColumn fx:id="DescriptionColumn" minWidth="0.0" prefWidth="297.0" text="Description" />
+            <TableColumn fx:id="DueDateColumn" minWidth="0.0" prefWidth="78.0" text="DueDate" />
+            <TableColumn fx:id="MarkCompleteColumn" minWidth="5.0" prefWidth="107.0" text="MarkComplete" />
+        </columns>
+         <contextMenu>
+            <ContextMenu>
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#AddItem" text="Add Item" />
+                  <MenuItem mnemonicParsing="false" onAction="#editListTitle" text="Edit title" />
+                  <MenuItem mnemonicParsing="false" onAction="#DisplayAllItemsInList" text="Display all Items" />
+                  <MenuItem mnemonicParsing="false" onAction="#DisplayCompleteItemsInList" text="Display all complete items" />
+                  <MenuItem mnemonicParsing="false" onAction="#DisplayIncompleteItemsInList" text="Display all incomplete items" />
+                  <MenuItem mnemonicParsing="false" onAction="#SaveList" text="Save todo list to storage" />
+                  <MenuItem mnemonicParsing="false" onAction="#LoadList" text="Load todo list from storage" />
+                  <MenuItem mnemonicParsing="false" onAction="#SortList" text="Sort list by due date" />
+              </items>
+            </ContextMenu>
+         </contextMenu>
+      </TableView>
+   </children>
+</AnchorPane>
