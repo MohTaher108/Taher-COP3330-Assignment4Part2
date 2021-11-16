@@ -123,9 +123,7 @@ public class Controller {
 
     @FXML
     protected void SaveList() {
-        /*
-        new File("TodoList 1")
-         */
+
     }
 
     @FXML
@@ -133,13 +131,6 @@ public class Controller {
         /*
         new FileReader("TodoList 1")
         open File
-         */
-    }
-
-    @FXML
-    protected void SortList() {
-        /*
-
          */
     }
 }

@@ -1,19 +1,43 @@
 @startuml
-'https://plantuml.com/sequence-diagram
-
-class Item {
-+ String Name
-+ contextMenuForTabPanes contextMenu
-+ addTabPaneToAnchorPane()
+class ucf.assignments.Controller {
+- TableView<Item> tableView
+- TableColumn<Item,String> NameColumn
+- TableColumn<Item,String> DescriptionColumn
+- TableColumn<Item,String> DueDateColumn
+- TableColumn<Item,CheckBox> MarkCompleteColumn
+- TableColumn<Item,CheckBox> RemoveColumn
+~ ObservableList<Item> ItemList
++ void initialize()
+# void AddItem()
+# void ClearList()
+# void DisplayAllItemsInList()
+# void DisplayCompleteItemsInList()
+# void DisplayIncompleteItemsInList()
+# void SaveList()
+# void LoadList()
+}
+class ucf.assignments.Item {
+- String Name
+- String Description
+- String DueDate
+- CheckBox MarkComplete
+- CheckBox Remove
++ String getName()
++ void setName(String)
++ String getDescription()
++ void setDescription(String)
++ String getDueDate()
++ void setDueDate(String)
++ CheckBox getMarkComplete()
++ void setMarkComplete(CheckBox)
++ CheckBox getRemove()
++ void setRemove(CheckBox)
+}
+class ucf.assignments.MainApp {
++ void start(Stage)
++ {static} void main(String[])
 }
 
-anchorPane o-- tabPane : contains >
-tabPane *-- tab : contains >
-tab o-- accordion : contains >
-accordion *-- titledPane : contains >
 
-tabPane o-- contextMenuForTabPanes : contains >
-tab o-- contextMenuForTabs : contains >
-titledPane o-- contextMenuForTitledPanes : contains >
-
+javafx.application.Application <|-- ucf.assignments.MainApp
 @enduml
