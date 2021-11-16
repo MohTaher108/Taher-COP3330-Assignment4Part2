@@ -26,7 +26,6 @@
                   <MenuItem mnemonicParsing="false" onAction="#DisplayIncompleteItemsInList" text="Display all incomplete items" />
                   <MenuItem mnemonicParsing="false" onAction="#SaveList" text="Save todo list to storage" />
                   <MenuItem mnemonicParsing="false" onAction="#LoadList" text="Load todo list from storage" />
-                  <MenuItem mnemonicParsing="false" onAction="#SortList" text="Sort list by due date" />
               </items>
             </ContextMenu>
          </contextMenu>
