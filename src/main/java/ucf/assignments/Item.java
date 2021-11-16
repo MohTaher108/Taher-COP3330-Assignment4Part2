@@ -1,24 +1,24 @@
 package ucf.assignments;
 
+import javafx.beans.value.ObservableValue;
 import javafx.scene.control.*;
-
-import java.time.LocalDate;
 
 // Class for each item we will implement
 public class Item {
-    // Class's attributes and contextMenu
+    // Class's attributes
     private String Name;
-    private TextArea Description;
-    private LocalDate DueDate;
+    private String Description;
+    private String DueDate;
     private CheckBox MarkComplete;
+    private CheckBox Remove;
 
-    // Construct item's stuff
-    public Item(String Name, LocalDate DueDate) {
-        this.Name = Name;
-        this.Description = new TextArea("Description");
-        this.Description.setWrapText(true);
-        this.DueDate = DueDate;
+    // Construct item's basic stuff
+    public Item() {
+        this.Name = "Item";
+        this.Description = "Description";
+        this.DueDate = "1900-01-01";
         this.MarkComplete = new CheckBox();
+        this.Remove = new CheckBox();
     }
 
     // All my getters and setters
@@ -30,19 +30,19 @@ public class Item {
         this.Name = Name;
     }
 
-    public TextArea getDescription() {
+    public String getDescription() {
         return Description;
     }
 
     public void setDescription(String Description) {
-        this.Description.setText(Description);
+        this.Description = Description;
     }
 
-    public LocalDate getDueDate() {
+    public String getDueDate() {
         return DueDate;
     }
 
-    public void setDueDate(LocalDate DueDate) {
+    public void setDueDate(String DueDate) {
         this.DueDate = DueDate;
     }
 
@@ -53,19 +53,19 @@ public class Item {
     public void setMarkComplete(CheckBox MarkComplete) {
         this.MarkComplete = MarkComplete;
     }
-}
 
-/*
-// Class for the context menu of every item
-class ItemContextMenu extends ContextMenu {
-    // Make context menu, and menu items for removing items and marking items complete
-    ContextMenu menu = new ContextMenu();
-    MenuItem removeItem = new MenuItem("Remove Item");
-    MenuItem markComplete = new MenuItem("Mark Complete");
-
-    // Constructor that adds all our menu items to the context menu (since we always need that)
-    public ItemContextMenu() {
-        menu.getItems().addAll(removeItem, markComplete);
+    public CheckBox getRemove() {
+        return Remove;
     }
+
+    public void setRemove(CheckBox Remove) {
+        this.Remove = Remove;
+    }
+
+    /*
+    Remove.selectedProperty().addListener(
+      (ObservableValue<? extends Boolean> ov, Boolean old_val, Boolean new_val) -> {
+
+    });
+    */
 }
-*/
