@@ -1,6 +1,10 @@
+/*
+ *  UCF COP3330 Fall 2021 Assignment 4 Solution
+ *  Copyright 2021 Mohammad Taher
+ */
+
 package ucf.assignments;
 
-import javafx.beans.value.ObservableValue;
 import javafx.scene.control.*;
 
 // Class for each item we will implement
@@ -50,16 +54,16 @@ public class Item {
         return MarkComplete;
     }
 
-    public void setMarkComplete(CheckBox MarkComplete) {
-        this.MarkComplete = MarkComplete;
+    public void setMarkComplete(Boolean check) {
+        this.Remove.setSelected(check);
     }
 
     public CheckBox getRemove() {
         return Remove;
     }
 
-    public void setRemove(CheckBox Remove) {
-        this.Remove = Remove;
+    public void setRemove(Boolean check) {
+        this.Remove.setSelected(check);
     }
 
     /*

@@ -20,6 +20,7 @@
             <ContextMenu maxHeight="200.0" minHeight="200.0" prefHeight="200.0">
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#AddItem" text="Add Item" />
+                  <MenuItem mnemonicParsing="false" onAction="#removeItem" text="Remove Selected Items" />
                   <MenuItem mnemonicParsing="false" onAction="#ClearList" text="Clear List" />
                   <MenuItem mnemonicParsing="false" onAction="#DisplayAllItemsInList" text="Display all Items" />
                   <MenuItem mnemonicParsing="false" onAction="#DisplayCompleteItemsInList" text="Display all complete items" />

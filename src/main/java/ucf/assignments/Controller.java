@@ -1,3 +1,8 @@
+/*
+ *  UCF COP3330 Fall 2021 Assignment 4 Solution
+ *  Copyright 2021 Mohammad Taher
+ */
+
 package ucf.assignments;
 
 import javafx.collections.FXCollections;
@@ -76,6 +81,14 @@ public class Controller {
 
         // Add the new item to our arrayList
         ItemList.add(new Item());
+    }
+
+    @FXML
+    protected void removeItem() {
+        for(Item item: ItemList) {
+            if(item.getRemove().isSelected())
+                ItemList.remove(item);
+        }
     }
 
     // This method will clear my TableView (Todo List)
