@@ -9,6 +9,7 @@ class ucf.assignments.Controller {
 ~ ObservableList<Item> ItemList
 + void initialize()
 # void AddItem()
+# void removeItem()
 # void ClearList()
 # void DisplayAllItemsInList()
 # void DisplayCompleteItemsInList()
@@ -29,9 +30,11 @@ class ucf.assignments.Item {
 + String getDueDate()
 + void setDueDate(String)
 + CheckBox getMarkComplete()
-+ void setMarkComplete(CheckBox)
++ Boolean getMarkCompleteBoolean()
++ void setMarkComplete(Boolean)
 + CheckBox getRemove()
-+ void setRemove(CheckBox)
++ Boolean getRemoveBoolean()
++ void setRemove(Boolean)
 }
 class ucf.assignments.MainApp {
 + void start(Stage)

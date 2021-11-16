@@ -13,7 +13,13 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.nio.file.Path;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class Controller {
     // My main tableview that will contain everything
@@ -30,6 +36,20 @@ public class Controller {
     // Initialize all my columns
     @FXML
     public void initialize() {
+        /*
+            Set up Name Column
+            .
+            .
+            .
+            Set up RemoveColumn
+
+            Allow editing on NameColumn
+            Allow editing on DescriptionColumn
+            Allow editing on DueDateColumn
+
+            tableView.set(ItemList)
+            tableView.isEditable(true) */
+
         // Set up the columns in the table
         NameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
         NameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -77,7 +97,7 @@ public class Controller {
     // This method will add an item when the MenuItem is clicked
     @FXML
     protected void AddItem() {
-        /*  ItemList.add(item) */
+        // ItemList.add(item)
 
         // Add the new item to our arrayList
         ItemList.add(new Item());
@@ -85,8 +105,10 @@ public class Controller {
 
     @FXML
     protected void removeItem() {
+        // for each item, remove it if remove.isSelected()
+
         for(Item item: ItemList) {
-            if(item.getRemove().isSelected())
+            if(item.getRemoveBoolean())
                 ItemList.remove(item);
         }
     }
@@ -94,12 +116,16 @@ public class Controller {
     // This method will clear my TableView (Todo List)
     @FXML
     protected void ClearList() {
+        // tableView.clear
+
         tableView.getItems().clear();
     }
 
     // Reset the TableView to our original list in case it was changed
     @FXML
     protected void DisplayAllItemsInList() {
+        // tableView.set(ItemList)
+
         // Set the table's view as our original ItemList
         tableView.setItems(ItemList);
     }
@@ -108,12 +134,12 @@ public class Controller {
     @FXML
     protected void DisplayCompleteItemsInList() {
         /*  Make ObservableList<Item> tempList
-            Add all complete items to it
+            Add all complete items to it using for each loop
             tableView.set(tempList) */
 
         ObservableList<Item> tempList = FXCollections.observableArrayList();
         for(Item item: ItemList) {
-            if(item.getMarkComplete().isSelected())
+            if(item.getMarkCompleteBoolean())
                 tempList.add(item);
         }
         tableView.setItems(tempList);
@@ -123,27 +149,69 @@ public class Controller {
     @FXML
     protected void DisplayIncompleteItemsInList() {
         /*  Make ObservableList<Item> tempList
-            Add all incomplete items to it
+            Add all incomplete items to it using for each loop
             tableView.set(tempList) */
 
         ObservableList<Item> tempList = FXCollections.observableArrayList();
         for(Item item: ItemList) {
-            if(!item.getMarkComplete().isSelected())
+            if(!item.getMarkCompleteBoolean())
                 tempList.add(item);
         }
         tableView.setItems(tempList);
     }
 
+    // Saves the list to a
     @FXML
-    protected void SaveList() {
+    protected void SaveList() throws Exception {
+        FileWriter output = new FileWriter(Path.of("").toAbsolutePath()+"\\output.txt");
+        for(Item item: ItemList) {
+            output.write(item.getName() + " ");
+            output.write(item.getDescription() + " ");
+            output.write(item.getDueDate() + " ");
 
+            if(item.getMarkCompleteBoolean())
+                output.write("1 ");
+            else
+                output.write("0 ");
+
+            if(item.getRemoveBoolean())
+                output.write("1 ");
+            else
+                output.write("0 ");
+
+            output.write("\n");
+        }
+        output.close();
     }
 
     @FXML
-    protected void LoadList() {
-        /*
-        new FileReader("TodoList 1")
-        open File
-         */
+    protected void LoadList() throws Exception {
+        ItemList.clear();
+        File input = new File(Path.of("").toAbsolutePath()+"\\output.txt");
+        Scanner scan = new Scanner(input);
+
+        while(scan.hasNextLine()) {
+            ArrayList<String> temp = new ArrayList<>();
+            String str = scan.nextLine();
+            StringTokenizer Tokenizer = new StringTokenizer(str);
+            while(Tokenizer.hasMoreTokens()) {
+                temp.add(Tokenizer.nextToken());
+            }
+            ItemList.add(new Item());
+            int size = ItemList.size()-1;
+            ItemList.get(size).setName(temp.get(0));
+            ItemList.get(size).setDescription(temp.get(1));
+            ItemList.get(size).setDueDate(temp.get(2));
+
+            if(temp.get(3).equals("1"))
+                ItemList.get(size).setMarkComplete(true);
+            else
+                ItemList.get(size).setMarkComplete(false);
+
+            if(temp.get(4).equals("1"))
+                ItemList.get(size).setRemove(true);
+            else
+                ItemList.get(size).setRemove(false);
+        }
     }
 }

@@ -10,5 +10,7 @@
     then use the checkboxes and the corresponding menu option
     If you'd like to reset, hit Display All Items
 
+    If you'd like to sort the list by DueDate, you can click the top of the DueDate column
+
     If you'd like to save or load the list, then those options will also be
     available in the menu

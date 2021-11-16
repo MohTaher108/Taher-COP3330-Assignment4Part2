@@ -13,12 +13,12 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ControllerTest {
+    ObservableList<Item> itemList = FXCollections.observableArrayList();
 
     @Test
     void AddItem() {
-        ObservableList<Item> itemList = FXCollections.observableArrayList();
         itemList.add(new Item());
-        assertEquals(itemList.size(), 1);
+        assertEquals(1, itemList.size());
     }
 
     @Test

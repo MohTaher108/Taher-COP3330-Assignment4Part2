@@ -54,12 +54,20 @@ public class Item {
         return MarkComplete;
     }
 
+    public Boolean getMarkCompleteBoolean() {
+        return MarkComplete.isSelected();
+    }
+
     public void setMarkComplete(Boolean check) {
-        this.Remove.setSelected(check);
+        this.MarkComplete.setSelected(check);
     }
 
     public CheckBox getRemove() {
         return Remove;
+    }
+
+    public Boolean getRemoveBoolean() {
+        return Remove.isSelected();
     }
 
     public void setRemove(Boolean check) {
