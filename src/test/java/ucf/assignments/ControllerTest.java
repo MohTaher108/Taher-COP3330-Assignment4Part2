@@ -13,41 +13,57 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ControllerTest {
-    ObservableList<Item> itemList = FXCollections.observableArrayList();
+    Item item = new Item("Item", "Description", "1900-01-01");
 
     @Test
     void AddItem() {
-        itemList.add(new Item());
-        assertEquals(1, itemList.size());
+        /*
+        assertEquals(0, itemListsize)
+        itemList.add()
+        assertEquals(1, itemListsize)
+         */
+
+        ObservableList<Item> ItemList = FXCollections.observableArrayList();
+        assertEquals(0, ItemList.size());
+        ItemList.add(item);
+        assertEquals(1, ItemList.size());
     }
 
     @Test
     void removeItem() {
+        /*
+        assertEquals(0, itemListsize)
+        itemList.add()
+        assertEquals(1, itemListsize)
+         */
+        ObservableList<Item> ItemList = FXCollections.observableArrayList();
+        ItemList.add(item);
+        ItemList.add(item);
+        ItemList.remove(0);
+        assertEquals(ItemList.size(), 1);
+    }
+
+    @Test
+    void clearList() {
+        ObservableList<Item> ItemList = FXCollections.observableArrayList();
+        ItemList.add(item);
+        ItemList.add(item);
+        assertEquals(ItemList.size(), 2);
+        ItemList.clear();
+        assertEquals(ItemList.size(), 0);
+    }
+
+    @Test
+    void displayAllItemsInList() {
         ObservableList<Item> itemList = FXCollections.observableArrayList();
-        itemList.add(new Item());
-        itemList.add(new Item());
-        itemList.get(0).setRemove(true);
-        for(Item item: itemList)
-            if(item.getRemove().isSelected())
-                itemList.remove(item);
+        itemList.add(item);
         assertEquals(itemList.size(), 1);
     }
 
     /*
     @Test
-    void clearList() {
-    }
-
-    @Test
-    void displayAllItemsInList() {
-        TableView tableView;
-        ObservableList<Item> itemList = FXCollections.observableArrayList();
-        itemList.add(new Item());
-        assertEquals(itemList.size(), 1);
-    }
-
-    @Test
     void displayCompleteItemsInList() {
+
     }
 
     @Test
@@ -56,10 +72,12 @@ class ControllerTest {
 
     @Test
     void saveList() {
+        // check that path exists
     }
 
     @Test
     void loadList() {
+        // check that everything is read properly
     }
     */
 }

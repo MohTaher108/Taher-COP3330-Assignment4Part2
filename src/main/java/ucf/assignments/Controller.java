@@ -160,15 +160,19 @@ public class Controller {
         tableView.setItems(tempList);
     }
 
-    // Saves the list to a
+    // Saves the list to a txt file
     @FXML
     protected void SaveList() throws Exception {
+        // Make txt file
         FileWriter output = new FileWriter(Path.of("").toAbsolutePath()+"\\output.txt");
+        // Write every single item into it
         for(Item item: ItemList) {
+            // Write Strings
             output.write(item.getName() + " ");
             output.write(item.getDescription() + " ");
             output.write(item.getDueDate() + " ");
 
+            // Write boolean values as strings
             if(item.getMarkCompleteBoolean())
                 output.write("1 ");
             else
@@ -184,25 +188,32 @@ public class Controller {
         output.close();
     }
 
+    // Loads saved list
     @FXML
     protected void LoadList() throws Exception {
+        // Make file and scanner
         ItemList.clear();
         File input = new File(Path.of("").toAbsolutePath()+"\\output.txt");
         Scanner scan = new Scanner(input);
 
+        // Loop through entire file
         while(scan.hasNextLine()) {
+            // Save an entire line into str, then tokenize it into temp (arrayList)
             ArrayList<String> temp = new ArrayList<>();
             String str = scan.nextLine();
             StringTokenizer Tokenizer = new StringTokenizer(str);
             while(Tokenizer.hasMoreTokens()) {
                 temp.add(Tokenizer.nextToken());
             }
+
+            // Add all the tokenized strings into our array lists
             ItemList.add(new Item());
             int size = ItemList.size()-1;
             ItemList.get(size).setName(temp.get(0));
             ItemList.get(size).setDescription(temp.get(1));
             ItemList.get(size).setDueDate(temp.get(2));
 
+            // Interpret boolean values
             if(temp.get(3).equals("1"))
                 ItemList.get(size).setMarkComplete(true);
             else

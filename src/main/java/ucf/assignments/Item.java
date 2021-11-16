@@ -25,6 +25,12 @@ public class Item {
         this.Remove = new CheckBox();
     }
 
+    public Item(String Name, String Description, String DueDate) {
+        this.Name = Name;
+        this.Description = Description;
+        this.DueDate = DueDate;
+    }
+
     // All my getters and setters
     public String getName() {
         return Name;
@@ -73,11 +79,4 @@ public class Item {
     public void setRemove(Boolean check) {
         this.Remove.setSelected(check);
     }
-
-    /*
-    Remove.selectedProperty().addListener(
-      (ObservableValue<? extends Boolean> ov, Boolean old_val, Boolean new_val) -> {
-
-    });
-    */
 }
